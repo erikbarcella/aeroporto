@@ -14,7 +14,7 @@ Aviao * cria_aviao(Aviao *a) {
 
 
 //arrumar funcao
-/* int inicializarAvioes() {
+int inicializarAvioes() {
     arq_aviao=fopen("aviao.dat", "r+b");
     if (arq_aviao==NULL)
     {
@@ -28,7 +28,7 @@ Aviao * cria_aviao(Aviao *a) {
    qtdAviao=((qtd_bytes/sizeof(Aviao)));
    fseek(arq_aviao,0,SEEK_SET);
 
-    int total_lido=fread(,sizeof(Aviao),qtdAviao,arq_aviao);
+    int total_lido=fread(/*local para guardar os dados*/,sizeof(Aviao),qtdAviao,arq_aviao);
 
     if (total_lido!=qtdAviao)
     {
@@ -37,7 +37,7 @@ Aviao * cria_aviao(Aviao *a) {
         exit(1);
     }
     return 1;
-} */
+}
 
 
 Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
