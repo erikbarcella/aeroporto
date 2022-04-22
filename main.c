@@ -3,6 +3,11 @@
 #include<string.h>
 #include"avioes.h"
 
+
+char mod[40];
+char pref[10];
+char cia[20];
+
 int menu () {
     int op=0;
     printf("-------------------------------------------------------- \n");
@@ -22,17 +27,29 @@ int menu () {
     return op;
 }
 
+int adicionarAviao(Aviao* n) {
+
+    fflush(stdin);
+    printf("Informe o nome do modelo: \n");
+    gets(mod);
+    printf("Informe o prefixo: \n");
+    gets(pref);
+    printf("Informe o nome da companhia aerea: \n");
+    gets(cia);
+    
+    if (n= set_aviao(n, mod, pref, cia)){
+        return 1;
+    } else
+        return 0;
+}
 
 int main () {
 
     printf("----- Inicio do Programa -----\n");
-
+    
     Aviao * hangar = cria_aviao(hangar);
- 
-    hangar= set_aviao(hangar,"boeing777", "azl2", "azul");
-    hangar= set_aviao(hangar,"boeing176", "kf5", "khalifaairlines");
-    hangar= set_aviao(hangar,"boeing196", "gol3", "gol");
-
+   
+   /*  inicializarAvioes();  */
     int op=0;
     op=menu();
 
@@ -45,7 +62,11 @@ int main () {
             break;
         case 2:
             printf("[2] Adicionar aviao em solo\n");
-
+            if(adicionarAviao(hangar)){
+                printf("Aviao adicionado com sucesso!!! \n");
+            } else{
+                printf("erro ao adicionar o aviao \n");
+            }
             op=menu();
             break;
         case 3:
@@ -79,6 +100,7 @@ int main () {
             break;
         }    
     } while (op!=0);
+    /* encerraAvioes(); */
     
     return 0;
 }
