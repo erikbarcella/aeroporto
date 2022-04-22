@@ -36,7 +36,6 @@ Aviao *adicionarAviao(Aviao* n) {
     gets(pref);
     printf("Informe o nome da companhia aerea: \n");
     gets(cia);
-
     if (n= set_aviao(n, mod, pref, cia)){
         return n;
     } else
