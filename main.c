@@ -27,7 +27,7 @@ int menu () {
     return op;
 }
 
-int adicionarAviao(Aviao* n) {
+Aviao *adicionarAviao(Aviao* n) {
 
     fflush(stdin);
     printf("Informe o nome do modelo: \n");
@@ -36,9 +36,9 @@ int adicionarAviao(Aviao* n) {
     gets(pref);
     printf("Informe o nome da companhia aerea: \n");
     gets(cia);
-    
+
     if (n= set_aviao(n, mod, pref, cia)){
-        return 1;
+        return n;
     } else
         return 0;
 }
@@ -62,7 +62,7 @@ int main () {
             break;
         case 2:
             printf("[2] Adicionar aviao em solo\n");
-            if(adicionarAviao(hangar)){
+            if(hangar=adicionarAviao(hangar)){
                 printf("Aviao adicionado com sucesso!!! \n");
             } else{
                 printf("erro ao adicionar o aviao \n");
