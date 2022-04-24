@@ -15,8 +15,11 @@ struct aviao {
 Aviao * cria_aviao(Aviao *a);
 Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia);
 void view_aviao(Aviao* a);
-/* int inicializarAvioes();
-int encerraAvioes(); */
+int salvar_arq (Aviao *lista);
+int qntdAviao();
+Aviao *inicializarAvioes();
+
+
 
 
 
