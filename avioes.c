@@ -12,10 +12,14 @@ Aviao * cria_aviao(Aviao *a) {
     return (NULL);
 }
 
+int qntdAviao() {
+    return qtdAviao;
+}
 
 //arrumar funcao
-int inicializarAvioes() {
-    arq_aviao=fopen("aviao.dat", "r+b");
+Aviao *inicializarAvioes() {
+    Aviao* storage;
+    arq_aviao=fopen("aviao.bin", "r+b");
     if (arq_aviao==NULL)
     {
         printf("ERRO \n");
@@ -28,7 +32,22 @@ int inicializarAvioes() {
    qtdAviao=((qtd_bytes/sizeof(Aviao)));
    fseek(arq_aviao,0,SEEK_SET);
 
-    int total_lido=fread(/*local para guardar os dados*/,sizeof(Aviao),qtdAviao,arq_aviao);
+   /* while(!feof(arq_aviao)) {
+    Aviao* novo = (Aviao*) malloc (sizeof(Aviao));
+    strcpy(novo->modelo, mod);
+    strcpy(novo->prefixo, prefix);
+    strcpy(novo->companhia, cia);
+
+    if(a==NULL) novo->proximo=novo; //ele recebe ele mesmo
+    else{
+        novo->anterior=a;
+        novo->proximo=a->proximo;
+        a->proximo=novo;
+    }
+    qtdAviao++;
+   } */
+
+    int total_lido=fread(storage,sizeof(Aviao),qtdAviao,arq_aviao);
 
     if (total_lido!=qtdAviao)
     {
@@ -36,7 +55,7 @@ int inicializarAvioes() {
         system("pause");
         exit(1);
     }
-    return 1;
+    return storage;
 }
 
 
@@ -52,7 +71,9 @@ Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
         novo->proximo=a->proximo;
         a->proximo=novo;
     }
+    qtdAviao++;
     return(novo);
+    
 }
 
 void view_aviao(Aviao* a) {
@@ -65,7 +86,32 @@ void view_aviao(Aviao* a) {
     } while (aux!=a);
 }
 
-//arrumar funcao
+
+int salvar_arq (Aviao *lista) {
+   arq_aviao=fopen("aviao.bin", "r+b");
+   int total_gravado=fwrite(lista,sizeof(Aviao),qtdAviao,arq_aviao);
+    if (total_gravado!=qtdAviao)
+    {
+        printf("Erro na escrita do arquivo \n");
+        system("pause");
+        exit(1);
+        return 0;
+    }
+    fclose(arq_aviao);
+    return 1;
+}
+
+/* void free_lista(Aviao ** pl) {
+      while (*pl != NULL)
+      {
+           Aviao * t = (*pl)->proximo;
+           *pl = NULL;
+           free(*pl);
+           *pl = t;
+      }
+} */
+
+
 /* int encerraAvioes() {
     fseek(arq_aviao, 0, SEEK_SET);
     int total_gravado=fwrite(hangar,sizeof(Aviao),qtdAviao,arq_aviao);
