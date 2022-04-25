@@ -9,6 +9,7 @@ struct aviao {
     char modelo[40];
     char prefixo[10];
     char companhia[20];
+    int id;
     };
 
 //assinaturas
@@ -18,6 +19,7 @@ void view_aviao(Aviao* a);
 int salvar_arq (Aviao *lista);
 int qntdAviao();
 Aviao *inicializarAvioes();
+Aviao * delete_aviao(Aviao * l, int argumento);
 
 
 
