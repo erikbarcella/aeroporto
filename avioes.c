@@ -16,54 +16,27 @@ int qntdAviao() {
 }
 
 //arrumar funcao
-Aviao *inicializarAvioes() {
-    Aviao* storage;
-    arq_aviao=fopen("aviao.bin", "r+b");
+/* Aviao *inicializarAvioes(Aviao *l) {
+
+    arq_aviao=fopen("aviao.txt", "r+");
     if (arq_aviao==NULL)
     {
         printf("ERRO \n");
         system("pause");
         exit(1);
     }
+    if (ftell(arq_aviao)!=0) {
 
-    while (!feof(arq_aviao))
-    {
-        Aviao *novo=(Aviao*)malloc(sizeof(Aviao));
-        fread(novo,sizeof(Aviao), 1, arq_aviao);
-        
+        while (!feof(arq_aviao)) {
+
+        Aviao *storage=(Aviao*)malloc(sizeof(Aviao));
+        fread(storage,sizeof(Aviao), 1, arq_aviao);
+        l=set_aviao(storage, storage->modelo, storage->prefixo, storage->companhia);
+        }
     }
-    
-   
-   /* fseek(arq_aviao, 0, SEEK_END);
-   int qtd_bytes=ftell(arq_aviao);
-   qtdAviao=((qtd_bytes/sizeof(Aviao)));
-   fseek(arq_aviao,0,SEEK_SET);
-
-    int total_lido=fread(storage,sizeof(Aviao),qtdAviao,arq_aviao);
-
-    if (total_lido!=qtdAviao)
-    {
-        printf("Erro na leitura do arquivo \n");
-        system("pause");
-        exit(1);
-    } */
-    return storage;
-}
-
-  /* while(!feof(arq_aviao)) {
-    Aviao* novo = (Aviao*) malloc (sizeof(Aviao));
-    strcpy(novo->modelo, mod);
-    strcpy(novo->prefixo, prefix);
-    strcpy(novo->companhia, cia);
-
-    if(a==NULL) novo->proximo=novo; //ele recebe ele mesmo
-    else{
-        novo->anterior=a;
-        novo->proximo=a->proximo;
-        a->proximo=novo;
-    }
-    qtdAviao++;
-   } */
+    fclose(arq_aviao);
+    return l;
+} */
 
 
 Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
@@ -71,16 +44,22 @@ Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
     strcpy(novo->modelo, mod);
     strcpy(novo->prefixo, prefix);
     strcpy(novo->companhia, cia);
+    
 
-    if(a==NULL) novo->proximo=novo; //ele recebe ele mesmo
-    else{
+    if(a==NULL) {
+        novo->proximo=novo; //ele recebe ele mesmo
+        novo->id=1;
+        qtdAviao++;
+    }
+        else{
         novo->anterior=a;
         novo->proximo=a->proximo;
         a->proximo=novo;
+        qtdAviao++;
+        novo->id=qtdAviao;
     }
-    qtdAviao++;
-    return(novo);
     
+    return(novo);
 }
 
 void view_aviao(Aviao* a) {
@@ -88,14 +67,14 @@ void view_aviao(Aviao* a) {
     Aviao* aux=a;
     if (a!=NULL) do
     {
-        printf("modelo %s -prefixo %s - companhia aerea %s- atual: %p \t-  prox: %p \t-  ant: %p \n", a->modelo,a->prefixo, a->companhia, a,  a->proximo, a->anterior);
+        printf("id: %d - modelo %s -prefixo %s - companhia aerea %s- atual: %p \t-  prox: %p \t-  ant: %p \n",a->id, a->modelo,a->prefixo, a->companhia, a,  a->proximo, a->anterior);
         a = a->proximo; //avanca no
     } while (aux!=a);
 }
 
 
 int salvar_arq (Aviao *lista) {
-   arq_aviao=fopen("aviao.bin", "r+b");
+   arq_aviao=fopen("aviao.txt", "r+");
    int total_gravado=fwrite(lista,sizeof(Aviao),qtdAviao,arq_aviao);
     if (total_gravado!=qtdAviao)
     {
@@ -108,38 +87,35 @@ int salvar_arq (Aviao *lista) {
     return 1;
 }
 
-/* void free_lista(Aviao ** pl) {
-      while (*pl != NULL)
-      {
-           Aviao * t = (*pl)->proximo;
-           *pl = NULL;
-           free(*pl);
-           *pl = t;
+Aviao * delete_aviao(Aviao * l,int argumento)
+{
+    Aviao * endereco_aser_deletado = NULL;
+    Aviao * endereco_anterior = l;
+    Aviao * endereco_retornado = NULL;
+    
+	Aviao * pl = l;
+		 if (l != NULL){
+		 	do { 
+	  			if (l->id==argumento){
+					endereco_aser_deletado = l;
+				 	break;
+				}
+				endereco_anterior = l;
+				l = l->proximo;
+			} while (pl != l );
+		 }
+	  if (endereco_aser_deletado == NULL){
+         printf ("Elemento nao localizado!\n"); 
       }
-} */
-
-
-/* int encerraAvioes() {
-    fseek(arq_aviao, 0, SEEK_SET);
-    int total_gravado=fwrite(hangar,sizeof(Aviao),qtdAviao,arq_aviao);
-    if (total_gravado!=qtdAviao)
-    {
-        printf("Erro na escrita do arquivo \n");
-        system("pause");
-        exit(1);
-    }
-
-    void free_lista(Aviao ** pl)
-    {
-      while (*pl != NULL)
-      {
-           Aviao * t = (*pl)->proximo;
-           *pl = NULL;
-           free(*pl);
-           *pl = t;
-      }
-    }
-   
-   fclose(arq_aviao);
-   return 1;
-} */
+      else{
+      	Aviao * elementoAnterior = endereco_aser_deletado->anterior;
+      	Aviao * elementoProximo = endereco_aser_deletado->proximo;
+      	
+      	elementoAnterior->proximo = endereco_aser_deletado->proximo;
+      	elementoProximo->anterior = endereco_aser_deletado->anterior;
+      	
+      	free(endereco_aser_deletado);
+      	return(elementoProximo);
+	  }  
+    return(pl);
+}
