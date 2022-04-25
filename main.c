@@ -48,12 +48,12 @@ int main () {
     printf("----- Inicio do Programa -----\n");
     
     Aviao * hangar = cria_aviao(hangar);
-    Aviao* l = inicializarAvioes(l);
-    /* hangar=inicializarAvioes(hangar);  */
+    /* hangar=inicializarAvioes(); */ 
 
-    int op;
+    int op=1;
    
     while (op!=0) {
+       
         op=menu();
         int aux=op;
             switch (aux) {
