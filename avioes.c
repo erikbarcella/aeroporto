@@ -7,7 +7,6 @@
 FILE *arq_aviao;
 int qtdAviao=0;
 
-
 Aviao * cria_aviao(Aviao *a) {
     return (NULL);
 }
@@ -26,13 +25,32 @@ Aviao *inicializarAvioes() {
         system("pause");
         exit(1);
     }
+
+    while (!feof(arq_aviao))
+    {
+        Aviao *novo=(Aviao*)malloc(sizeof(Aviao));
+        fread(novo,sizeof(Aviao), 1, arq_aviao);
+        
+    }
+    
    
-   fseek(arq_aviao, 0, SEEK_END);
+   /* fseek(arq_aviao, 0, SEEK_END);
    int qtd_bytes=ftell(arq_aviao);
    qtdAviao=((qtd_bytes/sizeof(Aviao)));
    fseek(arq_aviao,0,SEEK_SET);
 
-   /* while(!feof(arq_aviao)) {
+    int total_lido=fread(storage,sizeof(Aviao),qtdAviao,arq_aviao);
+
+    if (total_lido!=qtdAviao)
+    {
+        printf("Erro na leitura do arquivo \n");
+        system("pause");
+        exit(1);
+    } */
+    return storage;
+}
+
+  /* while(!feof(arq_aviao)) {
     Aviao* novo = (Aviao*) malloc (sizeof(Aviao));
     strcpy(novo->modelo, mod);
     strcpy(novo->prefixo, prefix);
@@ -46,17 +64,6 @@ Aviao *inicializarAvioes() {
     }
     qtdAviao++;
    } */
-
-    int total_lido=fread(storage,sizeof(Aviao),qtdAviao,arq_aviao);
-
-    if (total_lido!=qtdAviao)
-    {
-        printf("Erro na leitura do arquivo \n");
-        system("pause");
-        exit(1);
-    }
-    return storage;
-}
 
 
 Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
