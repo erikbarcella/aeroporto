@@ -28,7 +28,6 @@ int menu () {
 }
 
 Aviao *adicionarAviao(Aviao* n) {
-
     fflush(stdin);
     printf("Informe o nome do modelo: \n");
     gets(mod);
@@ -48,9 +47,10 @@ int main () {
     printf("----- Inicio do Programa -----\n");
     
     Aviao * hangar = cria_aviao(hangar);
-    /* hangar=inicializarAvioes(); */ 
-
+    /* hangar=inicializarAvioes(hangar); 
+ */
     int op=1;
+    int del;
    
     while (op!=0) {
        
@@ -71,6 +71,10 @@ int main () {
                 break;
             case 3:
                 printf("[3] Remover aviao em solo\n");
+                view_aviao(hangar);
+                printf("Informe o id do aviao que deseja remover: \n");
+                scanf("%d", &del);
+                hangar=delete_aviao(hangar, del);
                 break;
             case 4:
                 printf("[4] Listar todos os Passageiros\n");
@@ -84,6 +88,8 @@ int main () {
             case 7:
                 printf("[7] Pesquisar Passageiro (Idade)\n");
                 break;
+            case 8:
+                printf("qtd aviao %d \n", qntdAviao());
             default:
                 printf("Selecione uma opcao valida \n");
                 break;
