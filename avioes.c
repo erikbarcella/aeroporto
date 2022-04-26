@@ -87,35 +87,25 @@ int salvar_arq (Aviao *lista) {
     return 1;
 }
 
-Aviao * delete_aviao(Aviao * l,int argumento)
-{
-    Aviao * endereco_aser_deletado = NULL;
-    Aviao * endereco_anterior = l;
-    Aviao * endereco_retornado = NULL;
-    
-	Aviao * pl = l;
-		 if (l != NULL){
-		 	do { 
-	  			if (l->id==argumento){
-					endereco_aser_deletado = l;
-				 	break;
-				}
-				endereco_anterior = l;
-				l = l->proximo;
-			} while (pl != l );
-		 }
-	  if (endereco_aser_deletado == NULL){
-         printf ("Elemento nao localizado!\n"); 
-      }
-      else{
-      	Aviao * elementoAnterior = endereco_aser_deletado->anterior;
-      	Aviao * elementoProximo = endereco_aser_deletado->proximo;
-      	
-      	elementoAnterior->proximo = endereco_aser_deletado->proximo;
-      	elementoProximo->anterior = endereco_aser_deletado->anterior;
-      	
-      	free(endereco_aser_deletado);
-      	return(elementoProximo);
-	  }  
-    return(pl);
+Aviao * delete_aviao(Aviao *lista, int valor){
+	Aviao *comeco = lista;
+	system("cls");
+	
+	do{
+		if(comeco->id == valor && comeco->proximo != comeco){ // achou o valor e existe mais de um n�
+			comeco->proximo->anterior = comeco->anterior;
+			comeco->anterior->proximo = comeco->proximo;
+			return (comeco->anterior);
+		}
+		
+		else if(comeco->id == valor && comeco->proximo == comeco){ // achou o valor, mas s� existe um n�
+			return (NULL); 
+		}
+		
+		else comeco = comeco->proximo;
+		
+	}while(comeco != lista);
+	
+	printf("Valor nao existe!\n\n");
+	return (lista);
 }
