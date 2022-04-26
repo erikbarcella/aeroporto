@@ -16,9 +16,9 @@ int qntdAviao() {
 }
 
 //arrumar funcao
-/* Aviao *inicializarAvioes(Aviao *l) {
+Aviao *inicializarAvioes(Aviao *l) {
 
-    arq_aviao=fopen("aviao.txt", "r+");
+    arq_aviao=fopen("avioes.bin", "r+b");
     if (arq_aviao==NULL)
     {
         printf("ERRO \n");
@@ -36,7 +36,7 @@ int qntdAviao() {
     }
     fclose(arq_aviao);
     return l;
-} */
+}
 
 
 Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
@@ -74,7 +74,7 @@ void view_aviao(Aviao* a) {
 
 
 int salvar_arq (Aviao *lista) {
-   arq_aviao=fopen("aviao.txt", "r+");
+   arq_aviao=fopen("avioes.bin", "r+b");
    int total_gravado=fwrite(lista,sizeof(Aviao),qtdAviao,arq_aviao);
     if (total_gravado!=qtdAviao)
     {
