@@ -78,7 +78,11 @@ int main () {
                 view_aviao(hangar);
                 printf("Informe o id do aviao que deseja remover: \n");
                 scanf("%d", &del);
-                hangar=delete_aviao(hangar, del);
+                if (hangar=delete_aviao(hangar, del))
+                {
+                    printf("Aviao removido com  sucesso \n");
+                } else
+                    printf("Falha ao remover aviao \n");
                 break;
             case 4:
                 printf("[4] Listar todos os Passageiros\n");
