@@ -2,11 +2,14 @@
 #include<stdio.h>
 #include<string.h>
 #include"avioes.h"
+#include"passageiro.h"
 
 
 char mod[40];
 char pref[10];
 char cia[20];
+char nome[80];
+int idade;
 
 int menu () {
     int op;
@@ -52,6 +55,7 @@ int main () {
     } else{
         printf("arquivos nao carregados \n");
     }; 
+    Passageiro *lista = cria_passageiro(lista);
 
     int op=1;
     int del;
@@ -86,9 +90,20 @@ int main () {
                 break;
             case 4:
                 printf("[4] Listar todos os Passageiros\n");
+                view_passageiro(lista);
                 break;
             case 5:
                 printf("[5] Adicionar um Passageiro\n");
+                fflush(stdin);
+                printf("Informe o nome do passageiro: \n");
+                gets(nome);
+                printf("Informe a idade do passageiro: \n");
+                scanf("%d", &idade);
+                if (lista=insere_passageiro(lista, nome, idade))
+                {
+                    printf("Passageiro inserido com sucesso \n");
+                } else
+                    printf("Erro ao adicionar passageiro \n");
                 break;
             case 6:
                 printf("[6] Remover um Passageiro\n");
