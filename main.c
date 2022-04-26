@@ -47,8 +47,12 @@ int main () {
     printf("----- Inicio do Programa -----\n");
     
     Aviao * hangar = cria_aviao(hangar);
-    /* hangar=inicializarAvioes(hangar); 
- */
+    if(hangar=inicializarAvioes(hangar)){
+        printf("----- arquivos carregados -----\n");
+    } else{
+        printf("arquivos nao carregados \n");
+    }; 
+
     int op=1;
     int del;
    
