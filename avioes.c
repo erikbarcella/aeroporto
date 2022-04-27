@@ -101,7 +101,6 @@ Aviao * delete_aviao(Aviao *lista, int valor){
 		else if(comeco->id == valor && comeco->proximo == comeco){ // achou o valor, mas s� existe um n�
 			return (NULL); 
 		}
-		
 		else comeco = comeco->proximo;
         qtdAviao--;
 		
