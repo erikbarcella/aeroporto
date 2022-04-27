@@ -67,7 +67,7 @@ void view_aviao(Aviao* a) {
     Aviao* aux=a;
     if (a!=NULL) do
     {
-        printf("id: %d - modelo %s -prefixo %s - companhia aerea %s\n",a->id, a->modelo,a->prefixo, a->companhia);
+        printf("id: %d - modelo: %s -prefixo: %s - companhia aerea: %s \n",a->id, a->modelo,a->prefixo, a->companhia);
         a = a->proximo; //avanca no
     } while (aux!=a);
 }
@@ -87,9 +87,28 @@ int salvar_arq (Aviao *lista) {
     return 1;
 }
 
-Aviao * delete_aviao(Aviao *lista, int valor){
+void apaga_aviao(Aviao * a, int valor){
+	Aviao * temp = a;
+	Aviao * listaDeleteAnt = NULL;
+	Aviao * listaDeletePro = NULL;
+	
+	if (a != NULL){
+		do{
+			if(temp->id==valor){
+				listaDeleteAnt = temp->anterior;
+				listaDeletePro = temp->proximo;
+				
+				listaDeleteAnt->proximo=temp->proximo;
+				listaDeletePro->anterior=listaDeleteAnt;
+				break;
+			}
+			temp = temp->proximo;
+    	}while(temp!=a);
+	};
+}
+
+/* Aviao * delete_aviao(Aviao *lista, int valor){
 	Aviao *comeco = lista;
-	system("cls");
 	
 	do{
 		if(comeco->id == valor && comeco->proximo != comeco){ // achou o valor e existe mais de um n�
@@ -106,7 +125,6 @@ Aviao * delete_aviao(Aviao *lista, int valor){
         qtdAviao--;
 		
 	}while(comeco != lista);
-	
 	printf("Valor nao existe!\n\n");
 	return (lista);
-}
+} */
