@@ -8,6 +8,7 @@
 char mod[40];
 char pref[10];
 char cia[20];
+int idade;
 
 
 int menu () {
@@ -54,7 +55,6 @@ int main () {
     } else{
         printf("arquivos nao carregados \n");
     }; 
-
     Lista *p=cria_lista(p);
 
     int op=1;
@@ -103,7 +103,9 @@ int main () {
                 break;
             case 7:
                 printf("[7] Pesquisar Passageiro (Idade)\n");
-                find_lista(p);
+                printf("Informe a idade do passageiro a ser localizado: \n");
+                scanf("%d", &idade);
+                find_lista(p, idade);
                 break;
             default:
                 printf("Selecione uma opcao valida \n");
