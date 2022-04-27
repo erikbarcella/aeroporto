@@ -8,8 +8,7 @@
 char mod[40];
 char pref[10];
 char cia[20];
-char nome[80];
-int idade;
+
 
 int menu () {
     int op;
@@ -44,18 +43,6 @@ Aviao *adicionarAviao(Aviao* n) {
         return 0;
 }
 
-Passageiro * adicionarPassageiro(Passageiro *n){
-    fflush(stdin);
-    printf("Informe o nome do passageiro: \n");
-    gets(nome);
-    printf("Informe a idade do passageiro: \n");
-    scanf("%d", &idade);
-    if(n=insere_passageiro(n, nome, idade)){
-        return n;
-    } else
-        return 0;
-}
-
 
 int main () {
 
@@ -67,7 +54,8 @@ int main () {
     } else{
         printf("arquivos nao carregados \n");
     }; 
-    Passageiro *lista = cria_passageiro(lista);
+
+    Lista *p=cria_lista(p);
 
     int op=1;
     int del;
@@ -102,24 +90,21 @@ int main () {
                 break;
             case 4:
                 printf("[4] Listar todos os Passageiros\n");
-                view_passageiro(lista);
+                imprime_lista_fim_ao_inicio(p);
                 break;
             case 5:
                 printf("[5] Adicionar um Passageiro\n");
-                if(lista=adicionarPassageiro(lista)){
-                    printf("Passageiro adicionado com sucesso!!! \n");
-                } else{
-                    printf("erro ao adicionar o passageiro\n");
-                }
+                insere_lista(p);
                 break;
             case 6:
                 printf("[6] Remover um Passageiro\n");
+                imprime_lista_fim_ao_inicio(p);
+                remover_passageiro(p);
                 break;
             case 7:
                 printf("[7] Pesquisar Passageiro (Idade)\n");
+                find_lista(p);
                 break;
-            case 8:
-                printf("qtd aviao %d \n", qntdAviao());
             default:
                 printf("Selecione uma opcao valida \n");
                 break;
