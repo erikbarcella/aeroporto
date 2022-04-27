@@ -12,8 +12,7 @@ Passageiro * cria_passageiro(Passageiro *a) {
 Passageiro * insere_passageiro(Passageiro * l, char *nome, int ida)
 {
  Passageiro *aux, *novo =(Passageiro *) malloc(sizeof(Passageiro));
-    if (novo)
-    {
+    if (novo) {
         strcpy(novo->nome, nome);
         novo->idade=ida;
 
@@ -22,28 +21,33 @@ Passageiro * insere_passageiro(Passageiro * l, char *nome, int ida)
 		    novo->anterior = novo;
             novo->id=1;
             qtdPassageiros++;
-             l= novo;
-        }
-      
-      
-        else {
+            l= novo;
+        } else{
             aux=l;
-            while (aux->proximo && novo->idade > aux->proximo->idade)
-            {
-                aux = aux->proximo;
-                aux= aux->anterior;
-                novo->proximo=aux->proximo;
-                novo->anterior=aux->anterior;
-                aux->proximo=novo;
-                aux->anterior=novo;
-                qtdPassageiros++;
-                novo->id=qtdPassageiros;
-            }
+            while (aux!=l && novo->idade > aux->idade) {
+                aux=aux->proximo;
+            } 
+        } if (aux==l)
+        {
+            novo->proximo=l;
+            novo->anterior=l;
+            l->anterior=novo;
+            l=novo;
+        } else if (aux==novo)
+        {
+            l->proximo=novo;
+            novo->anterior=l;
+            l=novo;
+            l->proximo=novo;
+        } else{
+            novo->proximo=aux;
+            aux->anterior->proximo=novo;
+            novo->anterior=aux->anterior;
+            aux->anterior=novo;
         }
     }
- return(novo);
+    return(novo);
 }
-
 void view_passageiro(Passageiro* a) {
 
     Passageiro* aux=a;
