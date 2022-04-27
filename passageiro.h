@@ -23,4 +23,4 @@ void insere_lista(Lista *li);
 void imprime_lista_inicio_ao_fim(Lista *li);
 void imprime_lista_fim_ao_inicio(Lista *li);
 void remover_passageiro(Lista *li);
-void find_lista(Lista * l);
+void find_lista(Lista *l, int idade);
