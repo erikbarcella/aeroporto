@@ -109,6 +109,7 @@ void imprime_lista_fim_ao_inicio(Lista *li){
 }
 
 void remover_passageiro(Lista *li){
+
     int numero, achou; /*a variável achou será utilizada como um contador de números removidos*/
     if(li->inicio == NULL){ /*caso a lista esteja vazia*/
         printf("Lista Vazia!! \n");
@@ -158,23 +159,20 @@ void remover_passageiro(Lista *li){
     }
 }
 
-void find_lista(Lista * l)
-{
-   int idade, achou;
+void find_lista(Lista *l, int idade) {
+
     if(l->inicio == NULL){ /*caso a lista esteja vazia*/
-        printf("Lista Vazia!! \n");
-    }else{ 
-        printf("Digite a idade do passageiro a ser localizado: \n"); 
-		scanf("%d", &idade);
-        aux =  l->inicio;
-        achou = 0;
+        printf("\nLista Vazia!!");
+    }else{
+        aux=l->inicio;
         do
         {
-            if(aux->idade == idade){
-                achou=achou+1;
-                printf("idade %d- nome %s -id: %d \n",aux->idade, aux->nome, aux->id);
-            }
+            aux=aux->prox;
+            if (aux->idade==idade)
+            {
+                printf("idade %d- nome: %s -id: %d \n",aux->idade, aux->nome, aux->id);
+            } 
         } while (aux!=NULL);
-        printf("foram localizados %d passageiros \n", achou);
     }
 }
+
