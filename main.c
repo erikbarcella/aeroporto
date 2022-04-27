@@ -51,11 +51,16 @@ int main () {
     
     Aviao * hangar = cria_aviao(hangar);
     if(hangar=inicializarAvioes(hangar)){
-        printf("----- arquivos carregados -----\n");
+        printf("----- arquivos avioes carregados -----\n");
     } else{
-        printf("arquivos nao carregados \n");
+        printf("arquivos avioes nao carregados \n");
     }; 
     Lista *p=cria_lista(p);
+   /*  if(p=inicializarPassageiro(p)){
+        printf("----- arquivos passageiros carregados -----\n");
+    } else{
+        printf("arquivos passageiros nao carregados \n");
+    };  */
 
     int op=1;
     int del;
@@ -82,7 +87,7 @@ int main () {
                 view_aviao(hangar);
                 printf("Informe o id do aviao que deseja remover: \n");
                 scanf("%d", &del);
-                if (hangar=delete_aviao(hangar, del))
+                if (hangar=delete_aviao(hangar,del))
                 {
                     printf("Aviao removido com  sucesso \n");
                 } else
@@ -115,10 +120,16 @@ int main () {
 
   //salvar arquivos
     if (salvar_arq(hangar))  {
-        printf("Arquivos salvos com sucesso!! \n");
+        printf("Arquivos avioes salvos com sucesso!! \n");
     } else  {
-    printf("Erro ao salvar os arquivos \n");
+    printf("Erro ao salvar os arquivos avioes \n");
     }
+/* 
+    if (salvar_arq_passageiro(p))  {
+        printf("Arquivos passageiros salvos com sucesso!! \n");
+    } else  {
+    printf("Erro ao salvar os arquivos passageiros\n");
+    } */
     return 0;
 }
 
