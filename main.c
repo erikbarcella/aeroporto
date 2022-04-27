@@ -10,7 +10,6 @@ char pref[10];
 char cia[20];
 int idade;
 
-
 int menu () {
     int op;
     printf("-------------------------------------------------------- \n");
@@ -56,14 +55,9 @@ int main () {
         printf("arquivos avioes nao carregados \n");
     }; 
     Lista *p=cria_lista(p);
-   /*  if(p=inicializarPassageiro(p)){
-        printf("----- arquivos passageiros carregados -----\n");
-    } else{
-        printf("arquivos passageiros nao carregados \n");
-    };  */
 
     int op=1;
-    int del;
+    int del=0;
    
     while (op!=0) {
        
@@ -87,8 +81,7 @@ int main () {
                 view_aviao(hangar);
                 printf("Informe o id do aviao que deseja remover: \n");
                 scanf("%d", &del);
-                if (hangar=delete_aviao(hangar,del))
-                {
+                if(hangar=delete_aviao(hangar,del)) {
                     printf("Aviao removido com  sucesso \n");
                 } else
                     printf("Falha ao remover aviao \n");
@@ -124,12 +117,6 @@ int main () {
     } else  {
     printf("Erro ao salvar os arquivos avioes \n");
     }
-/* 
-    if (salvar_arq_passageiro(p))  {
-        printf("Arquivos passageiros salvos com sucesso!! \n");
-    } else  {
-    printf("Erro ao salvar os arquivos passageiros\n");
-    } */
     return 0;
 }
 

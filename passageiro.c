@@ -4,6 +4,7 @@
 
 #include"passageiro.h"
 int qtdPassageiros=0;
+int qntdPassageiros=0;
 
 
 Lista* cria_lista(){
@@ -24,14 +25,14 @@ Passageiro *anterior;
 
 void insere_lista(Lista *li){
     Passageiro *novo =(Passageiro*) malloc(sizeof(Passageiro)); 
-
     fflush(stdin);
     printf("Digite o nome do passageiro: \n"); 
 	gets(novo->nome);
     printf("Digite a idade do passageiro: \n");
     scanf("%d", &novo->idade);
     qtdPassageiros++;
-    novo->id=qtdPassageiros;
+    qntdPassageiros++;
+    novo->id=qntdPassageiros;
 
     if(li->inicio == NULL){ 
         novo->prox = NULL;
@@ -148,7 +149,6 @@ void remover_passageiro(Lista *li){
 }
 
 
-
 void find_lista(Lista *l, int idade) {
 
     if(l->inicio == NULL){ /*caso a lista esteja vazia*/
@@ -162,43 +162,9 @@ void find_lista(Lista *l, int idade) {
             {
                 printf("idade %d- nome: %s -id: %d \n",aux->idade, aux->nome, aux->id);
             } 
-        } while (aux!=NULL);
+        } while (aux!=l->fim);
     }
 }
 
-/* int salvar_arq_passageiro (Lista *lista) {
-   arq_passageiro=fopen("passageiro.bin", "r+b");
-   int total_gravado=fwrite(lista,sizeof(Passageiro),qtdPassageiros,arq_passageiro);
-    if (total_gravado!=qtdPassageiros)
-    {
-        printf("Erro na escrita do arquivo \n");
-        system("pause");
-        exit(1);
-        return 0;
-    }
-    fclose(arq_passageiro);
-    return 1;
-} */
 
-
-/* Lista *inicializarPassageiro(Lista *l) {
-
-    arq_passageiro=fopen("avioes.bin", "r+b");
-    if (arq_passageiro==NULL)
-    {
-        printf("ERRO \n");
-        system("pause");
-        exit(1);
-    }
-    if (ftell(arq_passageiro)!=0) {
-
-        while (!feof(arq_passageiro)) {
-
-        Lista *n=cria_lista(n);
-        fread(n,sizeof(Passageiro), 1, arq_passageiro);
-        return n;
-        }
-    }
-    fclose(arq_passageiro);
-} */
 

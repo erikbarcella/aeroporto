@@ -6,6 +6,7 @@
 
 FILE *arq_aviao;
 int qtdAviao=0;
+int somaAviao=0;
 
 Aviao * cria_aviao(Aviao *a) {
     return (NULL);
@@ -40,6 +41,7 @@ Aviao *inicializarAvioes(Aviao *l) {
 
 
 Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
+    
     Aviao* novo = (Aviao*) malloc (sizeof(Aviao));
     strcpy(novo->modelo, mod);
     strcpy(novo->prefixo, prefix);
@@ -49,14 +51,16 @@ Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
     if(a==NULL) {
         novo->proximo=novo; //ele recebe ele mesmo
         novo->id=1;
+        somaAviao++;
         qtdAviao++;
     }
         else{
         novo->anterior=a;
         novo->proximo=a->proximo;
         a->proximo=novo;
+        somaAviao++;
         qtdAviao++;
-        novo->id=qtdAviao;
+        novo->id=somaAviao;
     }
     
     return(novo);
