@@ -67,7 +67,7 @@ void view_aviao(Aviao* a) {
     Aviao* aux=a;
     if (a!=NULL) do
     {
-        printf("id: %d - modelo %s -prefixo %s - companhia aerea %s- atual: %p \t-  prox: %p \t-  ant: %p \n",a->id, a->modelo,a->prefixo, a->companhia, a,  a->proximo, a->anterior);
+        printf("id: %d - modelo %s -prefixo %s - companhia aerea %s\n",a->id, a->modelo,a->prefixo, a->companhia);
         a = a->proximo; //avanca no
     } while (aux!=a);
 }
@@ -103,6 +103,7 @@ Aviao * delete_aviao(Aviao *lista, int valor){
 		}
 		
 		else comeco = comeco->proximo;
+        qtdAviao--;
 		
 	}while(comeco != lista);
 	
