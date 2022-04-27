@@ -44,6 +44,18 @@ Aviao *adicionarAviao(Aviao* n) {
         return 0;
 }
 
+Passageiro * adicionarPassageiro(Passageiro *n){
+    fflush(stdin);
+    printf("Informe o nome do passageiro: \n");
+    gets(nome);
+    printf("Informe a idade do passageiro: \n");
+    scanf("%d", &idade);
+    if(n=insere_passageiro(n, nome, idade)){
+        return n;
+    } else
+        return 0;
+}
+
 
 int main () {
 
@@ -94,16 +106,11 @@ int main () {
                 break;
             case 5:
                 printf("[5] Adicionar um Passageiro\n");
-                fflush(stdin);
-                printf("Informe o nome do passageiro: \n");
-                gets(nome);
-                printf("Informe a idade do passageiro: \n");
-                scanf("%d", &idade);
-                if (lista=insere_passageiro(lista, nome, idade))
-                {
-                    printf("Passageiro inserido com sucesso \n");
-                } else
-                    printf("Erro ao adicionar passageiro \n");
+                if(lista=adicionarPassageiro(lista)){
+                    printf("Passageiro adicionado com sucesso!!! \n");
+                } else{
+                    printf("erro ao adicionar o passageiro\n");
+                }
                 break;
             case 6:
                 printf("[6] Remover um Passageiro\n");
