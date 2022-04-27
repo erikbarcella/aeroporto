@@ -19,8 +19,8 @@ void view_aviao(Aviao* a);
 int salvar_arq (Aviao *lista);
 int qntdAviao();
 Aviao *inicializarAvioes();
-void apaga_aviao(Aviao * a, int valor);
-//Aviao * delete_aviao(Aviao * lista, int valor);
+Aviao * delete_aviao(Aviao *lista, int valor);
+
 
 
 
