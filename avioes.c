@@ -87,27 +87,8 @@ int salvar_arq (Aviao *lista) {
     return 1;
 }
 
-void apaga_aviao(Aviao * a, int valor){
-	Aviao * temp = a;
-	Aviao * listaDeleteAnt = NULL;
-	Aviao * listaDeletePro = NULL;
-	
-	if (a != NULL){
-		do{
-			if(temp->id==valor){
-				listaDeleteAnt = temp->anterior;
-				listaDeletePro = temp->proximo;
-				
-				listaDeleteAnt->proximo=temp->proximo;
-				listaDeletePro->anterior=listaDeleteAnt;
-				break;
-			}
-			temp = temp->proximo;
-    	}while(temp!=a);
-	};
-}
 
-/* Aviao * delete_aviao(Aviao *lista, int valor){
+Aviao * delete_aviao(Aviao *lista, int valor){
 	Aviao *comeco = lista;
 	
 	do{
@@ -127,4 +108,4 @@ void apaga_aviao(Aviao * a, int valor){
 	}while(comeco != lista);
 	printf("Valor nao existe!\n\n");
 	return (lista);
-} */
+}
