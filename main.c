@@ -49,11 +49,6 @@ int main () {
     printf("----- Inicio do Programa -----\n");
     
     Aviao * hangar = cria_aviao(hangar);
-    if(hangar=inicializarAvioes(hangar)){
-        printf("----- arquivos avioes carregados -----\n");
-    } else{
-        printf("arquivos avioes nao carregados \n");
-    }; 
     Lista *p=cria_lista(p);
 
     int op=1;
@@ -111,12 +106,6 @@ int main () {
             }   
     } 
 
-  //salvar arquivos
-    if (salvar_arq(hangar))  {
-        printf("Arquivos avioes salvos com sucesso!! \n");
-    } else  {
-    printf("Erro ao salvar os arquivos avioes \n");
-    }
     return 0;
 }
 
