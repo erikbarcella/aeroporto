@@ -4,7 +4,7 @@
 
 #include"avioes.h"
 
-FILE *arq_aviao;
+
 int qtdAviao=0;
 int somaAviao=0;
 
@@ -15,30 +15,6 @@ Aviao * cria_aviao(Aviao *a) {
 int qntdAviao() {
     return qtdAviao;
 }
-
-//arrumar funcao
-Aviao *inicializarAvioes(Aviao *l) {
-
-    arq_aviao=fopen("avioes.bin", "r+b");
-    if (arq_aviao==NULL)
-    {
-        printf("ERRO \n");
-        system("pause");
-        exit(1);
-    }
-    if (ftell(arq_aviao)!=0) {
-
-        while (!feof(arq_aviao)) {
-
-        Aviao *storage=(Aviao*)malloc(sizeof(Aviao));
-        fread(storage,sizeof(Aviao), 1, arq_aviao);
-        l=set_aviao(storage, storage->modelo, storage->prefixo, storage->companhia);
-        }
-    }
-    fclose(arq_aviao);
-    return l;
-}
-
 
 Aviao * set_aviao(Aviao*a, char *mod, char *prefix, char *cia) {
     
@@ -75,22 +51,6 @@ void view_aviao(Aviao* a) {
         a = a->proximo; //avanca no
     } while (aux!=a);
 }
-
-
-int salvar_arq (Aviao *lista) {
-   arq_aviao=fopen("avioes.bin", "r+b");
-   int total_gravado=fwrite(lista,sizeof(Aviao),qtdAviao,arq_aviao);
-    if (total_gravado!=qtdAviao)
-    {
-        printf("Erro na escrita do arquivo \n");
-        system("pause");
-        exit(1);
-        return 0;
-    }
-    fclose(arq_aviao);
-    return 1;
-}
-
 
 Aviao * delete_aviao(Aviao *lista, int valor){
 	Aviao *comeco = lista;
